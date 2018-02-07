@@ -26,8 +26,8 @@ public class LoginPage {
     WebElement passField;
     @FindBy(xpath = "//div[@class='control']/button")
     WebElement signInBtn;
-    @FindBy(xpath="//span[contains(@class, 'help is-danger') and @style='']")
-    WebElement badPassMsg;
+    @FindBy(xpath="//button[contains(@class, 'button is-small is-primary is-outlined left-mar-small')]")
+    WebElement signUpBtn;
 
     public boolean loginTest(String url, String username, String password) {
 
@@ -56,6 +56,12 @@ public class LoginPage {
             return false;
         }
 
+    }
+
+    public String signupTest(String url){
+        driver.navigate().to(url);
+        h.scrollToAndClickElement(signUpBtn,0);
+        return driver.getCurrentUrl();
     }
 
 }
