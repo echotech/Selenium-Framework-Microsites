@@ -39,7 +39,7 @@ public class TestBase {
         capabilities.setCapability(ChromeOptions.CAPABILITY, mobileEmulation);
 
         //Headless
-        options.addArguments("headless");
+        //options.addArguments("headless");
 
         if(mobileTest){
             //capabilities.setCapability();
