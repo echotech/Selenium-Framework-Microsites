@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +21,7 @@ public class TestBase {
 
     @BeforeTest
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "C:\\\\chromedriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./src/main/java/resources/drivers/chromedriver.exe");
     }
 
     public void setMobileTest(boolean mobile){
