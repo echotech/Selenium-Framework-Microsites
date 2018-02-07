@@ -43,12 +43,9 @@ public class LoginPage {
                 logger.info("Invalid Credentials");
                 return true;
             } else {
-                logger.info("I can't see the invalid creds");
+                logger.info("Valid Credentials");
                 return false;
             }
-        } catch (org.openqa.selenium.NoSuchElementException el) {
-            el.printStackTrace();
-            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
