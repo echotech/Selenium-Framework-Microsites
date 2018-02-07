@@ -43,4 +43,11 @@ public class Tests extends TestBase {
         assertEquals(l.loginTest("https://stageearlypay.apio.tech/login/","test@apio.tech", ""), true);
     }
 
+    @Test(groups = {"smoke", "login"})
+    public void testSignup(){
+        setMobileTest(false);
+        LoginPage l = new LoginPage(driver);
+        assertEquals("https://stageearlypay.apio.tech/login/#/new_account", l.signupTest("https://stageearlypay.apio.tech/login/"));
+    }
+
 }
