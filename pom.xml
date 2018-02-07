@@ -18,6 +18,24 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.lazerycode.selenium</groupId>
+                <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+                <version>1.0.17</version>
+                <configuration>
+                    <!-- root directory that downloaded driver binaries will be stored in -->
+                    <rootStandaloneServerDirectory>/src/main/java/resources/drivers/</rootStandaloneServerDirectory>
+                    <!-- Where you want to store downloaded zip files -->
+                    <downloadedZipFileDirectory>/src/main/java/resources/drivers/zips</downloadedZipFileDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>selenium</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
