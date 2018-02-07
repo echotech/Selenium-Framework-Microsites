@@ -4,15 +4,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import util.Helpers;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.slf4j.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
     private WebDriver driver;
     private Helpers h;
-    static final Logger logger = LogManager.getLogger(LoginPage.class.getName());
+    static Logger logger = LoggerFactory.getLogger(LoginPage.class);
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -29,6 +28,8 @@ public class LoginPage {
     WebElement signInBtn;
 
     public boolean loginTest(String url, String username, String password) {
+
+        logger.debug("Starting test with username: "+ username + "password: " + password);
         boolean isPresent;
         driver.navigate().to(url);
         h.waitForElement(emailField);
@@ -40,10 +41,10 @@ public class LoginPage {
             isPresent = driver.findElements(By.xpath("//div[contains(@class, 'notification') and @style='']")).size() > 0;
 
             if (isPresent) {
-                logger.info("Invalid Credentials");
+                logger.error("Invalid Credentials");
                 return true;
             } else {
-                logger.info("Valid Credentials");
+                logger.debug("Valid Credentials");
                 return false;
             }
         } catch (Exception e) {
