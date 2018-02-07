@@ -26,11 +26,14 @@ public class LoginPage {
     WebElement passField;
     @FindBy(xpath = "//div[@class='control']/button")
     WebElement signInBtn;
+    @FindBy(xpath="//span[contains(@class, 'help is-danger') and @style='']")
+    WebElement badPassMsg;
 
     public boolean loginTest(String url, String username, String password) {
 
         logger.debug("Starting test with username: "+ username + "password: " + password);
         boolean isPresent;
+        boolean isNullPw;
         driver.navigate().to(url);
         h.waitForElement(emailField);
         emailField.sendKeys(username);
@@ -39,8 +42,9 @@ public class LoginPage {
         try {
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
             isPresent = driver.findElements(By.xpath("//div[contains(@class, 'notification') and @style='']")).size() > 0;
+            isNullPw = driver.findElements(By.xpath("//span[contains(@class, 'help is-danger') and @style='']")).size() > 0;
 
-            if (isPresent) {
+            if (isPresent || isNullPw) {
                 logger.error("Invalid Credentials");
                 return true;
             } else {
