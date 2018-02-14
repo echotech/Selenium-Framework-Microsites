@@ -50,4 +50,14 @@ public class Tests extends TestBase {
         assertEquals("https://stageearlypay.apio.tech/login/#/new_account", l.signupTest("https://stageearlypay.apio.tech/login/"));
     }
 
+    @Test(groups= {"smoke", "login"})
+    public void forgotPassword(){
+
+    }
+
+    @Test(groups = {"smoke", "login"})
+    public void changePassword(){
+
+    }
+
 }
