@@ -1,8 +1,11 @@
 package test;
 
 import base.TestBase;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page.LoginPage;
+import util.DataGenerator;
+
 import static org.testng.Assert.assertEquals;
 
 public class Tests extends TestBase {
@@ -54,6 +57,7 @@ public class Tests extends TestBase {
     public void forgotPassword(){
 
     }
+
 
     @Test(groups = {"smoke", "login"})
     public void changePassword(){
