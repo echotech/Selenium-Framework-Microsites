@@ -20,13 +20,13 @@ public class LoginPage {
     }
 
     //Elements
-    @FindBy(xpath = "//input[@placeholder='example@domain.com']")
+    @FindBy(id = "emailInput")
     WebElement emailField;
-    @FindBy(xpath = "//input[@placeholder='password']")
+    @FindBy(id = "passwordInput")
     WebElement passField;
-    @FindBy(xpath = "//div[@class='control']/button")
+    @FindBy(id = "loginButton")
     WebElement signInBtn;
-    @FindBy(xpath="//button[contains(@class, 'button is-small is-primary is-outlined left-mar-small')]")
+    @FindBy(id = "loginToggleButton")
     WebElement signUpBtn;
 
     public boolean loginTest(String url, String username, String password) {
