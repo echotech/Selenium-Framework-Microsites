@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-    @AfterMethod
+    @AfterTest
     public void tearDown() throws InterruptedException {
         Thread.sleep(1000);
         //Close all tabs
