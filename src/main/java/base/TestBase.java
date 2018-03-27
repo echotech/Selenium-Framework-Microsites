@@ -22,7 +22,7 @@ public class TestBase {
 
     @BeforeTest
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "./src/main/java/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./src/main/java/resources/drivers/chromedriver");
     }
 
     public void setMobileTest(boolean mobile){
