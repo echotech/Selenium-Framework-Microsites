@@ -14,6 +14,7 @@ public class Tests extends TestBase {
     @Test
     public void testLoginInvalidBoth(){
         setMobileTest(false);
+        setHeadless(false);
         LoginPage l = new LoginPage(driver);
         assertEquals(l.loginTest("https://stageearlypay.apio.tech/login/","test@test.com", "test1"), true);
     }
