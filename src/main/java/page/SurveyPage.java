@@ -35,7 +35,7 @@ public class SurveyPage {
     @FindBy(id = "signupToggleButton")
     WebElement signupToggleButton;
 
-    public boolean businessSignupTest(String url, String username, String password) {
+    public boolean businessSignUpTest(String url, String username, String password) {
 
         logger.debug("Starting test with username: "+ username + "password: " + password);
         boolean isPresent;
