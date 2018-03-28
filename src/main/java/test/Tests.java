@@ -66,15 +66,15 @@ public class Tests extends TestBase {
 //    }
 
     // Sign Up Page Tests
-    @Test
-    public void testAllSignUp() {
-        testSignUpInvalidBoth();
-        testSignUpInvalidUser();
-        testSignUpInvalidPass();
-        testSignUpValid();
-        testSignUpBlankPass();
-        testToLogin();
-    }
+//    @Test
+//    public void testAllSignUp() {
+//        testSignUpInvalidBoth();
+//        testSignUpInvalidUser();
+//        testSignUpInvalidPass();
+//        testSignUpValid();
+//        testSignUpBlankPass();
+//        testToLogin();
+//    }
 
     @Test
     public void testSignUpInvalidBoth() {
