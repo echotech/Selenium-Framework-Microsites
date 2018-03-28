@@ -3,7 +3,7 @@ package test;
 import base.TestBase;
 import org.testng.annotations.Test;
 import page.LoginPage;
-import page.SurveyPage;
+import page.SignUpPage;
 
 import static org.testng.Assert.*;
 
@@ -22,7 +22,7 @@ public class Tests extends TestBase {
     public void testLoginInvalidUser(){
         setMobileTest(false);
         LoginPage l = new LoginPage(driver);
-        assertEquals(l.loginTest("https://stageearlypay.apio.tech/login/","invalid@test.com", "testing123"), true);
+        assertEquals(l.loginTest("https://stageearlypay.apio.tech/login/","invalidUser@test.com", "testing123"), true);
     }
 
     @Test
@@ -64,46 +64,49 @@ public class Tests extends TestBase {
 //
 //    }
 
-    // Survey Page Tests
+    // Sign Up Page Tests
     @Test
-    public void testGetStartedInvalidBoth() {
+    public void testSignUpInvalidBoth() {
         setMobileTest(false);
-        SurveyPage s = new SurveyPage(driver);
+        SignUpPage s = new SignUpPage(driver);
         assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "test@test.com", "test1"));
     }
 
     @Test
-    public void testGetStartedInvalidUser() {
+    public void testSignUpInvalidUser() {
         setMobileTest(false);
-        SurveyPage s = new SurveyPage(driver);
-        assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "invalid@test.com", "testing123"));
+        SignUpPage s = new SignUpPage(driver);
+        assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "invalid@", "testing123"));
+        assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", ".invalid@test.com", "testing123"));
+        assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "@test.com", "testing123"));
     }
 
     @Test
-    public void testGetStartedInvalidPass() {
+    public void testSignUpInvalidPass() {
         setMobileTest(false);
-        SurveyPage s = new SurveyPage(driver);
+        SignUpPage s = new SignUpPage(driver);
         assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "test@apio.tech", "invalid"));
     }
 
     @Test
-    public void testGetStartedValid() {
+    public void testSignUpValid() {
         setMobileTest(false);
-        SurveyPage s = new SurveyPage(driver);
-        assertFalse(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "test@apio.tech", "testing123"));
+        SignUpPage s = new SignUpPage(driver);
+        // Need to create new emails
+        assertFalse(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "delete64@apio.tech", "testing123"));
     }
 
     @Test
-    public void testGetStartedBlankPass() {
+    public void testSignUpBlankPass() {
         setMobileTest(false);
-        SurveyPage s = new SurveyPage(driver);
+        SignUpPage s = new SignUpPage(driver);
         assertTrue(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "test@apio.tech", ""));
     }
 
     @Test
     public void testToLogin() {
         setMobileTest(false);
-        SurveyPage s = new SurveyPage(driver);
+        SignUpPage s = new SignUpPage(driver);
         assertEquals(s.toLoginTest("https://stageearlypay.apio.tech/login/#/new_account"), "https://stageearlypay.apio.tech/login/#/");
     }
 

@@ -8,12 +8,12 @@ import org.slf4j.*;
 
 import java.util.concurrent.TimeUnit;
 
-public class SurveyPage {
+public class SignUpPage {
     private WebDriver driver;
     private Helpers h;
-    static Logger logger = LoggerFactory.getLogger(SurveyPage.class);
+    static Logger logger = LoggerFactory.getLogger(SignUpPage.class);
 
-    public SurveyPage(WebDriver driver) {
+    public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         h = new Helpers(driver);
@@ -40,6 +40,7 @@ public class SurveyPage {
         logger.debug("Starting test with username: "+ username + "password: " + password);
         boolean isPresent;
         boolean isNullPw;
+        boolean alreadyExists;
         driver.navigate().to(url);
         h.waitForElement(signupEmailInput);
         signupEmailInput.sendKeys(username);
@@ -49,8 +50,9 @@ public class SurveyPage {
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
             isPresent = driver.findElements(By.xpath("//div[contains(@class, 'notification') and @style='']")).size() > 0;
             isNullPw = driver.findElements(By.xpath("//span[contains(@class, 'help is-danger') and @style='']")).size() > 0;
+            alreadyExists = driver.findElements(By.id("signupMessageError")).size() > 0;
 
-            if (isPresent || isNullPw) {
+            if (isPresent || isNullPw || alreadyExists) {
                 logger.error("Invalid Credentials");
                 return true;
             } else {
