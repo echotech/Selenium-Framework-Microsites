@@ -26,12 +26,6 @@ public class SignUpPage {
     WebElement signupPasswordInput;
     @FindBy(id = "signupButton")
     WebElement signupButton;
-    @FindBy(id = "firstName")
-    WebElement firstName;
-    @FindBy(id = "lastName")
-    WebElement lastName;
-    @FindBy(id = "personalPhone")
-    WebElement personalPhone;
     @FindBy(id = "signupToggleButton")
     WebElement signupToggleButton;
 
