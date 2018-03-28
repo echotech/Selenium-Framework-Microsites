@@ -4,6 +4,7 @@ import base.TestBase;
 import org.testng.annotations.Test;
 import page.LoginPage;
 import page.SignUpPage;
+import util.DataGenerator;
 
 import static org.testng.Assert.*;
 
@@ -66,6 +67,16 @@ public class Tests extends TestBase {
 
     // Sign Up Page Tests
     @Test
+    public void testAllSignUp() {
+        testSignUpInvalidBoth();
+        testSignUpInvalidUser();
+        testSignUpInvalidPass();
+        testSignUpValid();
+        testSignUpBlankPass();
+        testToLogin();
+    }
+
+    @Test
     public void testSignUpInvalidBoth() {
         setMobileTest(false);
         SignUpPage s = new SignUpPage(driver);
@@ -92,8 +103,10 @@ public class Tests extends TestBase {
     public void testSignUpValid() {
         setMobileTest(false);
         SignUpPage s = new SignUpPage(driver);
-        // Need to create new emails
-        assertFalse(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", "delete64@apio.tech", "testing123"));
+        // Create a new email with the prefix, "test+"
+        DataGenerator dataGenerator = new DataGenerator();
+        String userEmail = "test+" + dataGenerator.getPerson().getEmail();
+        assertFalse(s.businessSignUpTest("https://stageearlypay.apio.tech/login/#/new_account", userEmail, "testing123"));
     }
 
     @Test
