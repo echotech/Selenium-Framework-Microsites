@@ -9,8 +9,19 @@ public class SupplierPortal {
     private WebDriver driver;
     private Helpers h;
 
-    @FindBy(xpath="//button[contains(.,'Create Invoice')]\")")
-    WebElement createInvoice;
+    public SupplierPortal(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+        h = new Helpers(driver);
+    }
+
+    @FindBy(xpath="//a[contains(.,'Create Invoice')]")
+    WebElement createInvoiceBtn;
+
+    public void newInvoice(){
+        h.scrollToAndClickElement(createInvoiceBtn, 0);
+
+    }
 }
 
 
