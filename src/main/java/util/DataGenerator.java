@@ -24,5 +24,11 @@ public class DataGenerator {
         return company;
     }
 
+    public String getCompanyVat(){
+        return company.getVatIdentificationNumber();
+    }
+
+
+
 
 }
