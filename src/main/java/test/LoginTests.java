@@ -8,9 +8,9 @@ import util.DataGenerator;
 
 import static org.testng.Assert.assertEquals;
 
-public class Tests extends TestBase {
+public class LoginTests extends TestBase {
 
-    //Login Page Tests
+    //Login Page LoginTests
     @Test
     public void testLoginInvalidBoth(){
         setMobileTest(false);
