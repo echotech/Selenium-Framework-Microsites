@@ -16,7 +16,7 @@ public class SupPortalTests extends TestBase{
         LoginPage l = new LoginPage(driver);
         l.loginTest("https://stageearlypay.apio.tech/login/","test@apio.tech", "testing123");
         SupplierPortal s = new SupplierPortal(driver);
-        s.newInvoice();
+        s.newInvoice("JedBuy", 1);
 
     }
 }
