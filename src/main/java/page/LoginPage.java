@@ -34,6 +34,7 @@ public class LoginPage {
         logger.debug("Starting test with username: "+ username + "password: " + password);
         boolean isPresent;
         boolean isNullPw;
+        boolean alreadyExists;
         driver.navigate().to(url);
         h.waitForElement(emailField);
         emailField.sendKeys(username);
@@ -43,8 +44,9 @@ public class LoginPage {
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
             isPresent = driver.findElements(By.xpath("//div[contains(@class, 'notification') and @style='']")).size() > 0;
             isNullPw = driver.findElements(By.xpath("//span[contains(@class, 'help is-danger') and @style='']")).size() > 0;
+            alreadyExists = driver.findElements(By.id("loginMessageError")).size() > 0;
 
-            if (isPresent || isNullPw) {
+            if (isPresent || isNullPw || alreadyExists) {
                 logger.error("Invalid Credentials");
                 return true;
             } else {
