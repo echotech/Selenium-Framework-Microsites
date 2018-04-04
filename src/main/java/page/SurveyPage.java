@@ -20,41 +20,64 @@ public class SurveyPage {
     }
 
     //Elements
-    @FindBy(id = "signupEmailInput")
-    WebElement signupEmailInput;
-    @FindBy(id = "signupPasswordInput")
-    WebElement signupPasswordInput;
-    @FindBy(id = "signupButton")
-    WebElement signupButton;
+//    @FindBy(id = "signupEmailInput")
+//    WebElement signupEmailInput;
+//    @FindBy(id = "signupPasswordInput")
+//    WebElement signupPasswordInput;
+//    @FindBy(id = "signupButton")
+//    WebElement signupButton;
     @FindBy(id = "firstName")
     WebElement firstName;
     @FindBy(id = "lastName")
     WebElement lastName;
     @FindBy(id = "personalPhone")
     WebElement personalPhone;
-    @FindBy(id = "signupToggleButton")
-    WebElement signupToggleButton;
+    @FindBy(id = "companyName")
+    WebElement companyName;
+    @FindBy(id = "street1")
+    WebElement street1;
+    @FindBy(id = "street2")
+    WebElement street2;
+    @FindBy(id = "city")
+    WebElement city;
+    @FindBy(id = "state")
+    WebElement state;
+    @FindBy(id = "zip")
+    WebElement zip;
+    @FindBy(id = "addressBlockError")
+    WebElement addressBlockError;
+    @FindBy(id = "logoURL")
+    WebElement logoUrl;
+    @FindBy(id = "phone")
+    WebElement phone;
+    @FindBy(id = "2q5")
+    WebElement checkbox;
+    @FindBy(id = "nextStepButton")
+    WebElement nextStepButton;
+    @FindBy(id = "previousStepButton")
+    WebElement previousStepButton;
 
-    public boolean businessSignupTest(String url, String username, String password) {
+    public boolean personalInformation(String personFirstName, String personLastName, String phoneNumber) {
 
-        logger.debug("Starting test with username: "+ username + "password: " + password);
-        boolean isPresent;
-        boolean isNullPw;
-        driver.navigate().to(url);
-        h.waitForElement(signupEmailInput);
-        signupEmailInput.sendKeys(username);
-        signupPasswordInput.sendKeys(password);
-        h.scrollToAndClickElement(signupButton, 0);
+        logger.debug("Starting test with first name: " + personFirstName + ", last name: " + personLastName + " and phone number: " + phoneNumber);
+        boolean hasTextInputError;
+        boolean hasPhoneNumberError;
+
+        h.waitForElement(firstName);
+        firstName.sendKeys(personFirstName);
+        lastName.sendKeys(personLastName);
+        personalPhone.sendKeys(phoneNumber);
+        h.scrollToAndClickElement(nextStepButton, 0);
         try {
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-            isPresent = driver.findElements(By.xpath("//div[contains(@class, 'notification') and @style='']")).size() > 0;
-            isNullPw = driver.findElements(By.xpath("//span[contains(@class, 'help is-danger') and @style='']")).size() > 0;
+            hasTextInputError = driver.findElements(By.id("textInputError")).size() > 0;
+            hasPhoneNumberError = driver.findElements(By.id("phoneInputError")).size() > 0;
 
-            if (isPresent || isNullPw) {
-                logger.error("Invalid Credentials");
+            if (hasTextInputError || hasPhoneNumberError) {
+                logger.error("Invalid Information");
                 return true;
             } else {
-                logger.debug("Valid Credentials");
+                logger.debug("Valid Information");
                 return false;
             }
         } catch (Exception e) {
@@ -64,13 +87,47 @@ public class SurveyPage {
 
     }
 
-    public String toLoginTest(String url){
-        driver.navigate().to(url);
-        h.scrollToAndClickElement(signupToggleButton,0);
-        return driver.getCurrentUrl();
+    public boolean businessInformation(String compName, String streetOne, String streetTwo, String companyCity, String companyState, String companyZip, String companyUrl, String companyPhone, Boolean agreedToTerms) {
+
+        logger.debug("Starting test with Company Name: " + compName + ", Street 1: " + streetOne + ", Street 2 (Optional): " + streetTwo + ", City: " + companyCity + ", State: " + companyState + ", zip: " + companyZip + ", Company URL: " + companyUrl + " and Company Phone Number: " + companyPhone);
+        boolean hasTextInputError;
+        boolean hasCompanyAddressError;
+        boolean hasPhoneNumberError;
+        boolean checkboxIsNotChecked;
+
+        h.scrollToAndClickElement(companyName, 0);
+        companyName.sendKeys(compName);
+        street1.sendKeys(streetOne);
+        street2.sendKeys(streetTwo);
+        city.sendKeys(companyCity);
+        state.sendKeys(companyState);
+        zip.sendKeys(companyZip);
+        logoUrl.sendKeys(companyUrl);
+        phone.sendKeys(companyPhone);
+        if (agreedToTerms) {
+            h.scrollToAndClickElement(checkbox, 0);
+        }
+        h.scrollToAndClickElement(nextStepButton, 0);
+        try {
+            driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+            hasTextInputError = driver.findElements(By.id("textInputError")).size() > 0;
+            hasCompanyAddressError = driver.findElements(By.id("addressBlockError")).size() > 0;
+            hasPhoneNumberError = driver.findElements(By.id("phoneInputError")).size() > 0;
+            checkboxIsNotChecked = driver.findElements(By.id("2q5")).size() > 0;
+
+            if (hasTextInputError || hasCompanyAddressError || hasPhoneNumberError || checkboxIsNotChecked) {
+                logger.error("Invalid Information");
+                return true;
+            } else {
+                logger.debug("Valid Information");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
-
-
 
 }
 
